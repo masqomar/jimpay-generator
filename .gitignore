@@ -15,3 +15,5 @@ yarn-error.log
 /.vscode
 /db-fix.sql
 /db-lama.sql
+/db-lama edit.sql
+/orders.sql
