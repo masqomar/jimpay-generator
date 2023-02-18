@@ -89,7 +89,8 @@ class TransferController extends Controller
         // dd($request->all());
         $request->validate([
             'nominal_transfer' => 'required|numeric',
-            'anggota_id' => 'required|numeric'
+            'anggota_id' => 'required|numeric',
+            'member_id' => 'required|string'
         ]);
 
         $nominalTransfer = $request->nominal_transfer;

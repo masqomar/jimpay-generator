@@ -23,6 +23,17 @@
 </div>
 <!-- * App Header -->
 
-Comming Soon
+<div class="order-done-content">
+    <br>
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+        <br>
+        <h6>
+            <a class="btn btn-sm btn-warning text-center" href="{{url('/')}}" role="button">Kembali</a>
+        </h6>
+    </div>
+    @endif
+</div>
 
 @endsection

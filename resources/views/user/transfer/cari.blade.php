@@ -49,6 +49,7 @@
             @endif
         </div>
         <input class="form-control" type="hidden" name="anggota_id" value="{{$detailAnggota->id}}" required>
+        <input class="form-control" type="hidden" name="member_id" value="{{$detailAnggota->member_id}}" required>
         <div class="form-group basic">
             <input type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center" value="Transfer">
         </div>
