@@ -2,8 +2,6 @@
 
 @section('title', trans('Riwayat Transaksi'))
 
-@extends('layouts.contentHeader')
-
 @section('content')
 <!-- loader -->
 <div id="loader">

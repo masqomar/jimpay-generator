@@ -2,8 +2,6 @@
 
 @section('title', trans('Topup Cash'))
 
-@extends('layouts.contentHeader')
-
 @section('content')
 <!-- loader -->
 <div id="loader">
