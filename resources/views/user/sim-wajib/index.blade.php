@@ -2,8 +2,6 @@
 
 @section('title', trans('Simpanan Wajib'))
 
-@extends('layouts.contentHeader')
-
 @section('content')
 <!-- loader -->
 <div id="loader">
@@ -22,6 +20,10 @@
     <div class="right"></div>
 </div>
 <!-- * App Header -->
+
+<br>
+<br>
+<br>
 @if($anggotaID == Auth::user()->id)
 
 <h3 class="text-center"><strong>Total Simpanan Wajib @rupiah($totalSimpananWajib)</strong></h3>

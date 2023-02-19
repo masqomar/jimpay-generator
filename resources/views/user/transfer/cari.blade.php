@@ -22,6 +22,10 @@
     <div class="right"></div>
 </div>
 <!-- * App Header -->
+
+<br>
+<br>
+<br>
 @forelse($anggota as $detailAnggota)
 <h4 class="text-center"> Transfer ke!
     <h4 class="text-center text-info"><strong>{{$detailAnggota->first_name}}<br />

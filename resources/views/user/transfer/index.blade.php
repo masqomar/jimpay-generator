@@ -22,6 +22,9 @@
     <div class="right"></div>
 </div>
 <!-- * App Header -->
+<br>
+<br>
+<br>
 @if ($message = Session::get('success'))
 <div class="alert alert-info alert-block">
     <strong>{{ $message }}</strong>

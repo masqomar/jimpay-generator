@@ -22,7 +22,9 @@
     <div class="right"></div>
 </div>
 <!-- * App Header -->
-
+<br>
+<br>
+<br>
 <ul class="listview image-listview">
     <li>
         <a href="{{ route('logout') }}" style="color: #0a0a0a">

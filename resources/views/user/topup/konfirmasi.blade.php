@@ -22,6 +22,10 @@
     <div class="right"></div>
 </div>
 <!-- * App Header -->
+
+<br>
+<br>
+<br>
 <div class="section mt-1 mb-5">
     <div class="alert alert-success text-center">
         <div class="icon icon-40 bg-white text-success mr-2 rounded-circle"></div>

@@ -22,7 +22,9 @@
     <div class="right"></div>
 </div>
 <!-- * App Header -->
-
+<br>
+<br>
+<br>
 <div class="order-done-content">
     <br>
     @if ($message = Session::get('success'))
