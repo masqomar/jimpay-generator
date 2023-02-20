@@ -25,10 +25,8 @@ class StoreUserTopupRequest extends FormRequest
     {
         return [
             'user_id' => 'required|exists:App\Models\User,id',
-			'amount' => 'required|numeric',
-			'date' => 'required|date',
-			'note' => 'required|string',
-			'status' => 'required|string',
+            'amount' => 'required|numeric',
+            'note' => 'required|string',
         ];
     }
 }

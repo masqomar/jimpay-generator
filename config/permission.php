@@ -181,12 +181,15 @@ return [
                 'role & permission delete',
             ]
         ],
-        [
-            'group' => 'tests',
-            'access' => [
-                'test view',
-            ]
-        ],
-        ['group' => 'devidens', 'access' => ['deviden view', 'deviden create', 'deviden edit', 'deviden delete']], ['group' => 'periods', 'access' => ['period view', 'period create', 'period edit', 'period delete']], ['group' => 'user topups', 'access' => ['user topup view', 'user topup create', 'user topup edit', 'user topup delete']], ['group' => 'saving account types', 'access' => ['saving account type view', 'saving account type create', 'saving account type edit', 'saving account type delete']], ['group' => 'saving accounts', 'access' => ['saving account view', 'saving account create', 'saving account edit', 'saving account delete']], ['group' => 'cashflows', 'access' => ['cashflow view', 'cashflow create', 'cashflow edit', 'cashflow delete']], ['group' => 'kop product types', 'access' => ['kop product type view', 'kop product type create', 'kop product type edit', 'kop product type delete']],
-    ['group' => 'user savings', 'access' => ['user saving view', 'user saving create', 'user saving edit', 'user saving delete']],['group' => 'kop products', 'access' => ['kop product view', 'kop product create', 'kop product edit', 'kop product delete']],['group' => 'user saving transactions', 'access' => ['user saving transaction view', 'user saving transaction create', 'user saving transaction edit', 'user saving transaction delete']], 
-		],];
+        ['group' => 'devidens', 'access' => ['deviden view', 'deviden create', 'deviden edit', 'deviden delete']],
+        ['group' => 'periods', 'access' => ['period view', 'period create', 'period edit', 'period delete']],
+        ['group' => 'user topups', 'access' => ['user topup view', 'user topup create', 'user topup edit', 'user topup delete']],
+        ['group' => 'saving account types', 'access' => ['saving account type view', 'saving account type create', 'saving account type edit', 'saving account type delete']],
+        ['group' => 'saving accounts', 'access' => ['saving account view', 'saving account create', 'saving account edit', 'saving account delete']],
+        ['group' => 'cashflows', 'access' => ['cashflow view', 'cashflow create', 'cashflow edit', 'cashflow delete']],
+        ['group' => 'kop product types', 'access' => ['kop product type view', 'kop product type create', 'kop product type edit', 'kop product type delete']],
+        ['group' => 'user savings', 'access' => ['user saving view', 'user saving create', 'user saving edit', 'user saving delete']],
+        ['group' => 'kop products', 'access' => ['kop product view', 'kop product create', 'kop product edit', 'kop product delete']],
+        ['group' => 'user saving transactions', 'access' => ['user saving transaction view', 'user saving transaction create', 'user saving transaction edit', 'user saving transaction delete']],
+    ],
+];

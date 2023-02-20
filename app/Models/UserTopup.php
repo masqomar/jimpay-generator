@@ -23,10 +23,10 @@ class UserTopup extends Model
      */
     protected $casts = ['amount' => 'integer', 'date' => 'date:d/m/Y', 'note' => 'string', 'status' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
-    
 
-	public function user()
-	{
-		return $this->belongsTo(\App\Models\User::class);
-	}
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

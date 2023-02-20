@@ -112,7 +112,6 @@ return [
         [
             'header' => 'Main',
             'permissions' => [
-                'test view',
                 'deviden view',
                 'period view',
                 'user topup view',
@@ -131,18 +130,12 @@ return [
                     'route' => null,
                     'permission' => null,
                     'permissions' => [
-                        'test view',
                         'deviden view',
                         'period view',
                         'kop product type view',
                         'kop product view'
                     ],
                     'submenus' => [
-                        [
-                            'title' => 'Tests',
-                            'route' => '/tests',
-                            'permission' => 'test view'
-                        ],
                         [
                             'title' => 'Prosentase SHU',
                             'route' => '/devidens',

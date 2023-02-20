@@ -19,13 +19,6 @@ Route::middleware(['auth', 'web'])->group(function () {
     Route::resource('roles', RoleAndPermissionController::class);
 });
 
-Route::middleware(['auth', 'permission:test view'])->get('/tests', function () {
-    // dd('This is just a test and an example for permission and sidebar menu. You can remove this line on web.php, config/permission.php and config/generator.php');
-    // $user = User::first();
-    // $pengguna = $user->deposit(50000, ['description' => 'Hutang']);
-
-    // dd('ok');
-})->name('tests.index');
 
 require_once __DIR__ . '/anggota.php';
 
