@@ -6,12 +6,12 @@
     @endcan
 
     @can('saving account type edit')
-        <a href="{{ route('saving-account-types.edit', $model->id) }}" class="btn btn-outline-primary btn-sm">
-            <i class="fa fa-pencil-alt"></i>
-        </a>
+    <a href="{{ route('saving-account-types.edit', $model->id) }}" class="btn btn-outline-primary btn-sm">
+        <i class="fa fa-pencil-alt"></i>
+    </a>
     @endcan
 
-    @can('saving account type delete')
+    <!-- @can('saving account type delete')
         <form action="{{ route('saving-account-types.destroy', $model->id) }}" method="post" class="d-inline"
             onsubmit="return confirm('Are you sure to delete this record?')">
             @csrf
@@ -21,5 +21,5 @@
                 <i class="ace-icon fa fa-trash-alt"></i>
             </button>
         </form>
-    @endcan
+    @endcan -->
 </td>

@@ -43,7 +43,7 @@ class ViewServiceProvider extends ServiceProvider
         View::composer(['saving-accounts.create', 'saving-accounts.edit'], function ($view) {
             return $view->with(
                 'savingAccountTypes',
-                \App\Models\SavingAccountType::select('id', 'code')->get()
+                \App\Models\SavingAccountType::select('id', 'code', 'name')->get()
             );
         });
 
@@ -64,7 +64,7 @@ class ViewServiceProvider extends ServiceProvider
         View::composer(['user-savings.create', 'user-savings.edit'], function ($view) {
             return $view->with(
                 'kopProducts',
-                \App\Models\KopProduct::select('id')->get()
+                \App\Models\KopProduct::select('id', 'name')->get()
             );
         });
 

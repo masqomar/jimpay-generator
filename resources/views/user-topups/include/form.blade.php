@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="user-id">{{ __('User') }}</label>
-            <select class="form-select @error('user_id') is-invalid @enderror" name="user_id" id="user-id" class="form-control" required>
+            <select class="choices form-select @error('user_id') is-invalid @enderror" name="user_id" id="user-id" class="choices form-control" required>
                 <option value="" selected disabled>-- {{ __('Select user') }} --</option>
 
                 @foreach ($users as $user)
@@ -50,3 +50,11 @@
         </div>
     </div>
 </div>
+
+@push('css')
+<link rel="stylesheet" href="{{ asset('mazer') }}/css/pages/form-element-select.css">
+@endpush
+
+@push('js')
+<script src="{{ asset('mazer') }}/js/extensions/form-element-select.js"></script>
+@endpush

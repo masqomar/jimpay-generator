@@ -26,7 +26,7 @@
 
                 @foreach ($kopProducts as $kopProduct)
                 <option value="{{ $kopProduct->id }}" {{ isset($userSaving) && $userSaving->kop_product_id == $kopProduct->id ? 'selected' : (old('kop_product_id') == $kopProduct->id ? 'selected' : '') }}>
-                    {{ $kopProduct->id }}
+                    {{ $kopProduct->id }} || {{ $kopProduct->name }}
                 </option>
                 @endforeach
             </select>
@@ -98,7 +98,7 @@
             <select class="form-select @error('year') is-invalid @enderror" name="year" id="year" class="form-control" required>
                 <option value="" selected disabled>-- {{ __('Select year') }} --</option>
 
-                @foreach (range(1900, strftime("%Y", time())) as $year)
+                @foreach (range(2020, strftime("%Y", time())) as $year)
                 <option value="{{ $year }}" {{ isset($userSaving) && $userSaving->year == $year ? 'selected' : (old('year') == $year ? 'selected' : '') }}>
                     {{ $year }}
                 </option>

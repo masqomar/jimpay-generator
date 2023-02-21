@@ -23,15 +23,33 @@ class SavingAccountController extends Controller
      */
     public function index()
     {
+        // if (request()->ajax()) {
+        //     $savingAccounts = SavingAccount::with('saving_account_type:id,code');
+
+        //     return DataTables::of($savingAccounts)
+        //         ->addColumn('saving_account_type_id', function ($row) {
+        //             return $row->saving_account_type_id ? $row->saving_account_type_id->code : '';
+        //         })->addColumn('code', function ($row) {
+        //             return $row->code;
+        //         })->addColumn('action', 'saving-accounts.include.action')
+        //         ->toJson();
+        // }
+
         if (request()->ajax()) {
             $savingAccounts = SavingAccount::with('saving_account_type:id,code');
-
             return DataTables::of($savingAccounts)
-                ->addColumn('saving_account_type', function ($row) {
-                    return $row->saving_account_type ? $row->saving_account_type->code : '';
-                })->addColumn('action', 'saving-accounts.include.action')
-                ->toJson();
+                ->addColumn(
+                    'saving_account_type',
+                    function ($row) {
+                        return $row->saving_account_type ? $row->saving_account_type->code : '';
+                    }
+                )
+                ->addColumn('action', 'saving-accounts.include.action')
+                ->make();
         }
+
+        // $savingAccounts = SavingAccount::with('saving_account_type:id,code')->get();
+        // return json_encode($savingAccounts);
 
         return view('saving-accounts.index');
     }
@@ -54,7 +72,7 @@ class SavingAccountController extends Controller
      */
     public function store(StoreSavingAccountRequest $request)
     {
-        
+
         SavingAccount::create($request->validated());
 
         return redirect()
@@ -72,7 +90,7 @@ class SavingAccountController extends Controller
     {
         $savingAccount->load('saving_account_type:id,code');
 
-		return view('saving-accounts.show', compact('savingAccount'));
+        return view('saving-accounts.show', compact('savingAccount'));
     }
 
     /**
@@ -85,7 +103,7 @@ class SavingAccountController extends Controller
     {
         $savingAccount->load('saving_account_type:id,code');
 
-		return view('saving-accounts.edit', compact('savingAccount'));
+        return view('saving-accounts.edit', compact('savingAccount'));
     }
 
     /**
@@ -97,7 +115,7 @@ class SavingAccountController extends Controller
      */
     public function update(UpdateSavingAccountRequest $request, SavingAccount $savingAccount)
     {
-        
+
         $savingAccount->update($request->validated());
 
         return redirect()

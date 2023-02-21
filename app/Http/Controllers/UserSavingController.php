@@ -24,16 +24,16 @@ class UserSavingController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $userSavings = UserSaving::with('user:id,first_name', 'kop_product:id', 'period:id,name');
+            $userSavings = UserSaving::with('user:id,first_name', 'kop_product:id,name', 'period:id,name');
 
             return DataTables::of($userSavings)
-                ->addColumn('description', function($row){
+                ->addColumn('description', function ($row) {
                     return str($row->description)->limit(100);
                 })
-				->addColumn('user', function ($row) {
+                ->addColumn('user', function ($row) {
                     return $row->user ? $row->user->first_name : '';
                 })->addColumn('kop_product', function ($row) {
-                    return $row->kop_product ? $row->kop_product->id : '';
+                    return $row->kop_product ? $row->kop_product->name : '';
                 })->addColumn('period', function ($row) {
                     return $row->period ? $row->period->name : '';
                 })->addColumn('action', 'user-savings.include.action')
@@ -61,10 +61,19 @@ class UserSavingController extends Controller
      */
     public function store(StoreUserSavingRequest $request)
     {
-        $attr = $request->validated();
-		$attr['month'] = $request->month ? \Carbon\Carbon::createFromFormat('Y-m', $request->month)->toDateTimeString() : null;
-
-        UserSaving::create($attr);
+        // dd($request->all());
+        // $attr = $request->validated();
+        // $attr['month'] = $request->month ? \Carbon\Carbon::createFromFormat('Y-m', $request->month)->toDateTimeString() : null;
+        UserSaving::create([
+            'user_id' => $request->user_id,
+            'kop_product_id' => $request->kop_product_id,
+            'period_id' => $request->period_id,
+            'amount' => $request->amount,
+            'month' => $request->month,
+            'year' => $request->year,
+            'deposit_date' => $request->deposit_date,
+            'description' => $request->description,
+        ]);
 
         return redirect()
             ->route('user-savings.index')
@@ -81,7 +90,7 @@ class UserSavingController extends Controller
     {
         $userSaving->load('user:id,first_name', 'kop_product:id', 'period:id,name');
 
-		return view('user-savings.show', compact('userSaving'));
+        return view('user-savings.show', compact('userSaving'));
     }
 
     /**
@@ -94,7 +103,7 @@ class UserSavingController extends Controller
     {
         $userSaving->load('user:id,first_name', 'kop_product:id', 'period:id,name');
 
-		return view('user-savings.edit', compact('userSaving'));
+        return view('user-savings.edit', compact('userSaving'));
     }
 
     /**
@@ -107,7 +116,7 @@ class UserSavingController extends Controller
     public function update(UpdateUserSavingRequest $request, UserSaving $userSaving)
     {
         $attr = $request->validated();
-		$attr['month'] = $request->month ? \Carbon\Carbon::createFromFormat('Y-m', $request->month)->toDateTimeString() : null;
+        $attr['month'] = $request->month ? \Carbon\Carbon::createFromFormat('Y-m', $request->month)->toDateTimeString() : null;
 
         $userSaving->update($attr);
 

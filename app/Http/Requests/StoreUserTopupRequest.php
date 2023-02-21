@@ -24,7 +24,7 @@ class StoreUserTopupRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:App\Models\User,id',
+            'user_id'   => 'required|numeric',
             'amount' => 'required|numeric',
             'note' => 'required|string',
         ];
