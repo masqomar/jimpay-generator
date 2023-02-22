@@ -35,7 +35,6 @@ class UserController extends Controller
             $users = User::with('roles:id,name');
 
             return Datatables::of($users)
-                ->addColumn('action', 'users.include.action')
                 ->addColumn('role', function ($row) {
                     return $row->getRoleNames()->toArray() !== [] ? $row->getRoleNames()[0] : '-';
                 })
@@ -51,6 +50,8 @@ class UserController extends Controller
                     }
                     return 'Tidak Aktif';
                 })
+
+                ->addColumn('action', 'users.include.action')
                 ->toJson();
         }
 
@@ -75,7 +76,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $attr = $request->validated();
+        $attr = $request->validated() + (['country_code' => '62', 'type' => 'user']);
 
         if ($request->file('avatar') && $request->file('avatar')->isValid()) {
 
