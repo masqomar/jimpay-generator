@@ -97,7 +97,7 @@
                                 @if (auth()->user()->avatar == null)
                                 <img src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim(auth()->user()->email))) }}&s=500" alt="Avatar">
                                 @else
-                                <img src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}" alt="Avatar" class="imaged w64 rounded">
+                                <img src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}" alt="Avatar" style="border-radius: 30px; width: 70px; height: 70px;">
                                 @endif
                             </div>
                         </div>

@@ -46,7 +46,7 @@
                         @if (auth()->user()->avatar == null)
                         <img src="{{ asset ('assets') }}/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
                         @else
-                        <img src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}" alt="Avatar" class="imaged w64 rounded">
+                        <img src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}" alt="Avatar" style="border-radius: 30px; width: 70px; height: 70px;">
                         @endif
                     </div>
                 </a>
