@@ -25,7 +25,7 @@
 <br>
 <ul class="listview image-listview">
     <li>
-        <a href="{{ route('logout') }}" style="color: #0a0a0a">
+        <a href="{{ route('user.profil.password') }}" style="color: #0a0a0a">
             <div class="item">
                 <div class="icon-box bg-danger">
                     <ion-icon name="key"></ion-icon>
@@ -37,7 +37,7 @@
         </a>
     </li>
     <li>
-        <a href="{{ route('logout') }}" style="color: #0a0a0a">
+        <a href="{{ route('user.profil.password') }}" style="color: #0a0a0a">
             <div class="item">
                 <div class="icon-box bg-warning">
                     <ion-icon name="lock-closed"></ion-icon>
@@ -52,7 +52,7 @@
 <br>
 <ul class="listview image-listview">
     <li>
-        <a href="{{ route('logout') }}" style="color: #0a0a0a">
+        <a href="{{ route('user.profil.detail') }}" style="color: #0a0a0a">
             <div class="item">
                 <div class="icon-box bg-info">
                     <ion-icon name="person"></ion-icon>

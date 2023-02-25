@@ -61,4 +61,6 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     // Profil
     Route::get('profil', [ProfilController::class, 'index'])->name('user.profil.index');
+    Route::get('ganti-password', [ProfilController::class, 'changePassword'])->name('user.profil.password');
+    Route::get('edit-profil', [ProfilController::class, 'editProfil'])->name('user.profil.detail');
 });

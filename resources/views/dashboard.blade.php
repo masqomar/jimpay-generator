@@ -43,7 +43,11 @@
             <div id="user-detail">
                 <a href="{{ route('user.profil.index') }}">
                     <div class="avatar">
-                        <img src="{{ asset ('assets') }}//img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
+                        @if (auth()->user()->avatar == null)
+                        <img src="{{ asset ('assets') }}/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
+                        @else
+                        <img src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}" alt="Avatar" class="imaged w64 rounded">
+                        @endif
                     </div>
                 </a>
                 <div id="user-info">
