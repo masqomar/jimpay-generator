@@ -37,7 +37,7 @@
             @foreach ($simpananSukarela as $sukarela)
             @if($anggotaID == Auth::user()->id)
             <tr>
-                <td class="text-center">{{ $sukarela->deposit_date}}</td>
+                <td class="text-center">{{ $sukarela->deposit_date->format('Y-m-d')}}</td>
                 <td class="text-center">{{ $sukarela->month}} {{ $sukarela->year}}</td>
                 <td class="text-center">@rupiah ($sukarela->amount)</td>
             </tr>
@@ -49,6 +49,7 @@
     </table>
 
     <br>
+    Saldo Simpanan Sukarela : {{ $saldoSukarela }} <br /><br />
     Halaman : {{ $simpananSukarela->currentPage() }} <br />
     Jumlah Data : {{ $simpananSukarela->total() }} <br />
     Data Per Halaman : {{ $simpananSukarela->perPage() }} <br />

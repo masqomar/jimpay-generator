@@ -28,19 +28,25 @@ class UserSavingTransactionController extends Controller
             $userSavingTransactions = UserSavingTransaction::with('user:id,first_name', 'kop_product:id,name');
 
             return Datatables::of($userSavingTransactions)
-                ->addColumn('description', function($row){
+                ->addColumn('description', function ($row) {
                     return str($row->description)->limit(100);
                 })
-				->addColumn('user', function ($row) {
+                ->addColumn('user', function ($row) {
                     return $row->user ? $row->user->first_name : '';
                 })->addColumn('kop_product', function ($row) {
                     return $row->kop_product ? $row->kop_product->name : '';
                 })
                 ->addColumn('saving_transaction_image', function ($row) {
                     if ($row->saving_transaction_image == null) {
-                    return 'https://via.placeholder.com/350?text=No+Image+Avaiable';
-                }
+                        return 'https://via.placeholder.com/350?text=No+Image+Avaiable';
+                    }
                     return asset('storage/uploads/saving-transaction-images/' . $row->saving_transaction_image);
+                })
+                ->addColumn('status', function ($row) {
+                    if ($row->status == 1) {
+                        return 'Sukses';
+                    }
+                    return 'Diproses';
                 })
 
                 ->addColumn('action', 'user-saving-transactions.include.action')
@@ -69,7 +75,7 @@ class UserSavingTransactionController extends Controller
     public function store(StoreUserSavingTransactionRequest $request)
     {
         $attr = $request->validated();
-        
+
         if ($request->file('saving_transaction_image') && $request->file('saving_transaction_image')->isValid()) {
 
             $path = storage_path('app/public/uploads/saving_transaction_images/');
@@ -81,7 +87,7 @@ class UserSavingTransactionController extends Controller
 
             Image::make($request->file('saving_transaction_image')->getRealPath())->resize(500, 500, function ($constraint) {
                 $constraint->upsize();
-				$constraint->aspectRatio();
+                $constraint->aspectRatio();
             })->save($path . $filename);
 
             $attr['saving_transaction_image'] = $filename;
@@ -104,7 +110,7 @@ class UserSavingTransactionController extends Controller
     {
         $userSavingTransaction->load('user:id,first_name', 'kop_product:id,name');
 
-		return view('user-saving-transactions.show', compact('userSavingTransaction'));
+        return view('user-saving-transactions.show', compact('userSavingTransaction'));
     }
 
     /**
@@ -117,7 +123,7 @@ class UserSavingTransactionController extends Controller
     {
         $userSavingTransaction->load('user:id,first_name', 'kop_product:id,name');
 
-		return view('user-saving-transactions.edit', compact('userSavingTransaction'));
+        return view('user-saving-transactions.edit', compact('userSavingTransaction'));
     }
 
     /**
@@ -130,7 +136,7 @@ class UserSavingTransactionController extends Controller
     public function update(UpdateUserSavingTransactionRequest $request, UserSavingTransaction $userSavingTransaction)
     {
         $attr = $request->validated();
-        
+
         if ($request->file('saving_transaction_image') && $request->file('saving_transaction_image')->isValid()) {
 
             $path = storage_path('app/public/uploads/saving_transaction_images/');
@@ -142,7 +148,7 @@ class UserSavingTransactionController extends Controller
 
             Image::make($request->file('saving_transaction_image')->getRealPath())->resize(500, 500, function ($constraint) {
                 $constraint->upsize();
-				$constraint->aspectRatio();
+                $constraint->aspectRatio();
             })->save($path . $filename);
 
             // delete old saving_transaction_image from storage

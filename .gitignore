@@ -17,3 +17,6 @@ yarn-error.log
 /db-lama.sql
 /db-lama edit.sql
 /orders.sql
+/savingTransaksi.sql
+/savingTransaksiData.csv
+/public/uploads/

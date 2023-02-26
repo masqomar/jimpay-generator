@@ -42,14 +42,14 @@
         <tr>
             <th scope="col">Total TopUp JIMPay</th>
             <td>
-                <h4 class="text-danger"> @rupiah($totalTopUpSukarela)</h4>
+                <h4 class="text-danger">- @rupiah($totalTopUpSukarela)</h4>
             </td>
         </tr>
         <tr>
             <th scope="col">Total Penarikan Simpanan</th>
             <td>
-                <h4 class="text-danger"> @rupiah($totalTopUpSukarela)</h4>
-                <a href="#" class="btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center">Detail</a>
+                <h4 class="text-danger">- @rupiah($totalTarikSimpSukarela)</h4>
+                <a href="{{ route('user.sim-sukarela.detailPenarikan', $anggotaID) }}" class="btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center">Detail</a>
             </td>
         </tr>
         <tr>
@@ -63,6 +63,6 @@
 </table>
 <div class="text-center">
     <a class="btn btn-info" href="{{ route('user.sim-sukarela.show', $anggotaID) }}" role="button">Detail</a>
-    <a class="btn btn-warning" href="" role="button">Cairkan</a>
+    <a class="btn btn-warning" href="{{ route('user.sim-sukarela.tarik') }}" role="button">Cairkan</a>
 </div>
 @endsection

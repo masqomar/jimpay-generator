@@ -42,7 +42,10 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     // Simpanan Sukarela
     Route::get('simpanan-sukarela', [SimSukarelaController::class, 'index'])->name('user.sim-sukarela.index');
-    Route::get('simpanan-sukarela/{id}', [SimSukarelaController::class, 'show'])->name('user.sim-sukarela.show');
+    Route::get('simpanan-sukarela/detail/{id}', [SimSukarelaController::class, 'show'])->name('user.sim-sukarela.show');
+    Route::get('simpanan-sukarela/penarikan/{id}', [SimSukarelaController::class, 'detailPenarikan'])->name('user.sim-sukarela.detailPenarikan');
+    Route::get('simpanan-sukarela/pencairan', [SimSukarelaController::class, 'tarik'])->name('user.sim-sukarela.tarik');
+    Route::post('simpanan-sukarela/pencairan', [SimSukarelaController::class, 'tarikStore'])->name('user.sim-sukarela.tarikStore');
 
     // Riwayat Transaksi
     Route::get('riwayat-transaksi', [RiwayatTransaksiController::class, 'index'])->name('user.riwayat-transaksi.index');
