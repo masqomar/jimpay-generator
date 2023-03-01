@@ -39,6 +39,7 @@
                             <table class="table table-striped" id="data-table" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('Anggota') }}</th>
                                         <th>{{ __('Nominal') }}</th>
                                         <th>{{ __('Tanggal') }}</th>
@@ -70,6 +71,10 @@
         serverSide: true,
         ajax: "{{ route('user-topups.index') }}",
         columns: [{
+                data: 'id',
+                name: 'id'
+            },
+            {
                 data: 'user',
                 name: 'user.first_name'
             },

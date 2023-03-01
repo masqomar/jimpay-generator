@@ -39,6 +39,7 @@
                             <table class="table table-striped" id="data-table" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('Barang') }}</th>
                                         <th>{{ __('Mitra') }}</th>
                                         <th>{{ __('Anggota') }}</th>
@@ -72,6 +73,10 @@
         serverSide: true,
         ajax: "{{ route('paylaters.index') }}",
         columns: [{
+                data: 'id',
+                name: 'id',
+            },
+            {
                 data: 'product',
                 name: 'product',
             },
