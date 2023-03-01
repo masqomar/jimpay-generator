@@ -1,9 +1,9 @@
 <div class="row mb-2">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="saving-account-id">{{ __('Saving Account') }}</label>
+            <label for="saving-account-id">{{ __('Kode Akun') }}</label>
             <select class="form-select @error('saving_account_id') is-invalid @enderror" name="saving_account_id" id="saving-account-id" class="form-control" required>
-                <option value="" selected disabled>-- {{ __('Select saving account') }} --</option>
+                <option value="" selected disabled>-- {{ __('Pilih Kode Akun') }} --</option>
 
                 @foreach ($savingAccounts as $savingAccount)
                 <option value="{{ $savingAccount->id }}" {{ isset($cashflow) && $cashflow->saving_account_id == $savingAccount->id ? 'selected' : (old('saving_account_id') == $savingAccount->id ? 'selected' : '') }}>
@@ -32,7 +32,11 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="type">{{ __('Type') }}</label>
-            <input type="text" name="type" id="type" class="form-control @error('type') is-invalid @enderror" value="{{ isset($cashflow) ? $cashflow->type : old('type') }}" placeholder="{{ __('Type') }}" required />
+            <select class="form-select @error('type') is-invalid @enderror" name="type" id="saving-account-id" class="form-control" required>
+                <option value="" selected disabled>-- {{ __('Pilih Transaksi') }} --</option>
+                <option value="Masuk">{{ __('Masuk') }}</option>
+                <option value="Keluar">{{ __('Keluar') }}</option>
+            </select>
             @error('type')
             <span class="text-danger">
                 {{ $message }}

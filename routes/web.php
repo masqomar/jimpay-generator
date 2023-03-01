@@ -5,9 +5,10 @@ use App\Http\Controllers\{
     DashboardController,
     UserController,
     ProfileController,
-    RoleAndPermissionController
+    RoleAndPermissionController,
+    PaylaterController,
+    PermissionController
 };
-use App\Models\User;
 
 Route::middleware(['auth', 'web'])->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
@@ -17,6 +18,7 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleAndPermissionController::class);
+    Route::resource('permissions', PermissionController::class);
 });
 
 
@@ -33,3 +35,10 @@ Route::resource('kop-product-types', App\Http\Controllers\KopProductTypeControll
 Route::resource('user-savings', App\Http\Controllers\UserSavingController::class)->middleware('auth');
 Route::resource('kop-products', App\Http\Controllers\KopProductController::class)->middleware('auth');
 Route::resource('user-saving-transactions', App\Http\Controllers\UserSavingTransactionController::class)->middleware('auth');
+
+Route::resource('banks', App\Http\Controllers\BankController::class)->middleware('auth');
+Route::resource('paylater-providers', App\Http\Controllers\PaylaterProviderController::class)->middleware('auth');
+Route::resource('paylaters', App\Http\Controllers\PaylaterController::class)->middleware('auth');
+Route::get('paylaters/bayar/{id}', [PaylaterController::class, 'bayar'])->name('paylaters.bayar');
+Route::post('paylaters/bayar', [PaylaterController::class, 'bayarAngsuran'])->name('paylaters.bayar.bayarAngsuran');
+Route::resource('cashflow-transactions', App\Http\Controllers\CashflowTransactionController::class)->middleware('auth');

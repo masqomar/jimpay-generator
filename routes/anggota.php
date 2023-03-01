@@ -55,6 +55,9 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     // Paylater
     Route::get('paylater', [PaylaterController::class, 'index'])->name('user.paylater.index');
+    Route::get('paylater/pengajuan', [PaylaterController::class, 'create'])->name('user.paylater.create');
+    Route::post('paylater', [PaylaterController::class, 'store'])->name('user.paylater.store');
+    Route::get('paylater/show/{id}', [PaylaterController::class, 'show'])->name('user.paylater.show');
 
     // Pembiayaan
     Route::get('pembiayaan', [PembiayaanController::class, 'index'])->name('user.pembiayaan.index');

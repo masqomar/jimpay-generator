@@ -95,5 +95,48 @@ class ViewServiceProvider extends ServiceProvider
                 \App\Models\KopProduct::select('id', 'name')->get()
             );
         });
+
+
+        View::composer(['paylater-providers.create', 'paylater-providers.edit'], function ($view) {
+            return $view->with(
+                'kopProducts',
+                \App\Models\KopProduct::select('id', 'name')->get()
+            );
+        });
+
+        View::composer(['paylaters.create', 'paylaters.edit'], function ($view) {
+            return $view->with(
+                'users',
+                \App\Models\User::select('id', 'first_name')->get()
+            );
+        });
+
+        View::composer(['paylaters.create', 'paylaters.edit'], function ($view) {
+            return $view->with(
+                'paylaterProviders',
+                \App\Models\PaylaterProvider::select('id', 'name')->get()
+            );
+        });
+
+        View::composer(['paylaters.create', 'paylaters.edit'], function ($view) {
+            return $view->with(
+                'banks',
+                \App\Models\Bank::select('id', 'code')->get()
+            );
+        });
+
+        View::composer(['cashflow-transactions.create', 'cashflow-transactions.edit'], function ($view) {
+            return $view->with(
+                'cashflows',
+                \App\Models\Cashflow::select('id', 'saving_account_id')->get()
+            );
+        });
+
+        View::composer(['cashflow-transactions.create', 'cashflow-transactions.edit'], function ($view) {
+            return $view->with(
+                'banks',
+                \App\Models\Bank::select('id', 'code')->get()
+            );
+        });
     }
 }

@@ -121,7 +121,9 @@ return [
                 'kop product type view',
                 'user saving view',
                 'kop product view',
-                'user saving transaction view'
+                'user saving transaction view',
+                'bank view',
+                'cashflow transaction view'
             ],
             'menus' => [
                 [
@@ -133,7 +135,8 @@ return [
                         'deviden view',
                         'period view',
                         'kop product type view',
-                        'kop product view'
+                        'kop product view',
+                        'bank view'
                     ],
                     'submenus' => [
                         [
@@ -155,6 +158,11 @@ return [
                             'title' => 'Produk Koperasi',
                             'route' => '/kop-products',
                             'permission' => 'kop product view'
+                        ],
+                        [
+                            'title' => 'Banks',
+                            'route' => '/banks',
+                            'permission' => 'bank view'
                         ]
                     ]
                 ],
@@ -164,7 +172,7 @@ return [
                     'route' => null,
                     'permission' => null,
                     'permissions' => [
-                        'user topup view',
+                        'user topup view'
                     ],
                     'submenus' => [
                         [
@@ -182,7 +190,8 @@ return [
                     'permissions' => [
                         'saving account type view',
                         'saving account view',
-                        'cashflow view'
+                        'cashflow view',
+                        'cashflow transaction view'
                     ],
                     'submenus' => [
                         [
@@ -199,6 +208,11 @@ return [
                             'title' => 'Transaksi Kas',
                             'route' => '/cashflows',
                             'permission' => 'cashflow view'
+                        ],
+                        [
+                            'title' => 'Cashflow Transactions',
+                            'route' => '/cashflow-transactions',
+                            'permission' => 'cashflow transaction view'
                         ]
                     ]
                 ],
@@ -208,7 +222,8 @@ return [
                     'route' => null,
                     'permission' => null,
                     'permissions' => [
-                        'user saving view', 'user saving transaction view'
+                        'user saving view',
+                        'user saving transaction view'
                     ],
                     'submenus' => [
                         [
@@ -223,6 +238,32 @@ return [
                         ]
                     ]
                 ]
+            ]
+        ],
+        [
+            'header' => 'Pembiayaan',
+            'permissions' => [
+                'paylater provider view',
+                'paylater view',
+                'paylater transaction view'
+            ],
+            'menus' => [
+                [
+                    'title' => 'Paylater Providers',
+                    'icon' => '<i class="bi bi-people"></i>',
+                    'route' => '/paylater-providers',
+                    'permission' => 'paylater provider view',
+                    'permissions' => [],
+                    'submenus' => []
+                ],
+                [
+                    'title' => 'Paylaters',
+                    'icon' => '<i class="bi bi-people"></i>',
+                    'route' => '/paylaters',
+                    'permission' => 'paylater view',
+                    'permissions' => [],
+                    'submenus' => []
+                ],
             ]
         ],
         [
@@ -241,7 +282,15 @@ return [
                     'submenus' => []
                 ],
                 [
-                    'title' => 'Roles & permissions',
+                    'title' => 'Permissions',
+                    'icon' => '<i class="bi bi-person-check-fill"></i>',
+                    'route' => '/permissions',
+                    'permission' => 'role & permission view',
+                    'permissions' => [],
+                    'submenus' => []
+                ],
+                [
+                    'title' => 'Roles',
                     'icon' => '<i class="bi bi-person-check-fill"></i>',
                     'route' => '/roles',
                     'permission' => 'role & permission view',

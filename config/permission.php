@@ -191,5 +191,9 @@ return [
         ['group' => 'user savings', 'access' => ['user saving view', 'user saving create', 'user saving edit', 'user saving delete']],
         ['group' => 'kop products', 'access' => ['kop product view', 'kop product create', 'kop product edit', 'kop product delete']],
         ['group' => 'user saving transactions', 'access' => ['user saving transaction view', 'user saving transaction create', 'user saving transaction edit', 'user saving transaction delete']],
+        ['group' => 'banks', 'access' => ['bank view', 'bank create', 'bank edit', 'bank delete']],
+        ['group' => 'paylater providers', 'access' => ['paylater provider view', 'paylater provider create', 'paylater provider edit', 'paylater provider delete']],
+        ['group' => 'paylaters', 'access' => ['paylater view', 'paylater create', 'paylater edit', 'paylater delete']],
+        ['group' => 'cashflow transactions', 'access' => ['cashflow transaction view', 'cashflow transaction create', 'cashflow transaction edit', 'cashflow transaction delete']],
     ],
 ];
