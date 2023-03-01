@@ -42,13 +42,10 @@ class PaylaterController extends Controller
     {
         $paylaterDetails = PaylaterTransaction::where('paylater_id', $id)->get();
         $totalAngsuran = PaylaterTransaction::where('paylater_id', $id)->sum('amount');
-        $paylater = Paylater::all();
-        foreach ($paylater as $hutang) {
-            $nominalPaylater = $hutang->amount;
-        }
+        $nominalPaylater = Paylater::select('amount')->where('id', $id)->get()->first()->amount;
 
         $kurangBayar = $nominalPaylater - $totalAngsuran;
 
-        return view('user.paylater.show', compact('paylaterDetails', 'totalAngsuran', 'kurangBayar'));
+        return view('user.paylater.show', compact('paylaterDetails', 'totalAngsuran', 'nominalPaylater', 'kurangBayar'));
     }
 }

@@ -46,12 +46,16 @@
 
                     @endforeach
                     <tr>
+                        <th class="text-center">Nominal Pembiayaan</th>
+                        <td colspan="2" class="text-center"><strong>@rupiah ($nominalPaylater)</strong></td>
+                    </tr>
+                    <tr>
                         <th class="text-center">Total Pembayaran Angsuran</th>
                         <td colspan="2" class="text-center"><strong>@rupiah ($totalAngsuran)</strong></td>
                     </tr>
                     <tr>
                         <th class="text-center">Kekurangan</th>
-                        <td colspan="2" class="text-center"><strong>@rupiah ($kurangBayar)</strong></td>
+                        <td colspan="2" class="text-center"><strong>- @rupiah ($kurangBayar)</strong></td>
                     </tr>
                 </tbody>
             </table>

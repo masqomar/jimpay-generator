@@ -41,6 +41,7 @@
                                     <tr>
                                         {{-- <th>No</th> --}}
                                         <th>{{ __('Avatar') }}</th>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('Nama') }}</th>
                                         <th>{{ __('No Anggota') }}</th>
                                         <th>{{ __('Email') }}</th>
@@ -92,8 +93,12 @@
                 }
             },
             {
+                data: 'id',
+                name: 'id'
+            },
+            {
                 data: 'first_name',
-                name: 'name'
+                name: 'first_name'
             },
             {
                 data: 'member_id',

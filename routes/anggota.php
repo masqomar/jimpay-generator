@@ -61,6 +61,7 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     // Pembiayaan
     Route::get('pembiayaan', [PembiayaanController::class, 'index'])->name('user.pembiayaan.index');
+    Route::post('pembiayaan', [PembiayaanController::class, 'store'])->name('user.pembiayaan.store');
 
     // All Menu atau produk
     Route::get('produk', [ProdukAllController::class, 'index'])->name('user.produk.index');
