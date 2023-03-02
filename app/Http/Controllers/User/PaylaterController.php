@@ -8,6 +8,7 @@ use App\Models\Bank;
 use App\Models\Paylater;
 use App\Models\PaylaterProvider;
 use App\Models\PaylaterTransaction;
+use App\Models\Term;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,8 +26,9 @@ class PaylaterController extends Controller
     {
         $paylaterProviders = PaylaterProvider::all();
         $banks = Bank::all();
+        $terms = Term::where('title', 'paylater')->get();
 
-        return view('user.paylater.create', compact('paylaterProviders', 'banks'));
+        return view('user.paylater.create', compact('paylaterProviders', 'banks', 'terms'));
     }
 
     public function store(StorePengajuanPaylaterRequest $request)

@@ -42,3 +42,5 @@ Route::resource('paylaters', App\Http\Controllers\PaylaterController::class)->mi
 Route::get('paylaters/bayar/{id}', [PaylaterController::class, 'bayar'])->name('paylaters.bayar');
 Route::post('paylaters/bayar', [PaylaterController::class, 'bayarAngsuran'])->name('paylaters.bayar.bayarAngsuran');
 Route::resource('cashflow-transactions', App\Http\Controllers\CashflowTransactionController::class)->middleware('auth');
+
+Route::resource('terms', App\Http\Controllers\TermController::class)->middleware('auth');

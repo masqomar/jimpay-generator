@@ -109,195 +109,202 @@ return [
      * This code below always changes when you use a generator and maybe you must lint or format the code.
      */
     'sidebars' => [
-        [
-            'header' => 'Main',
-            'permissions' => [
-                'deviden view',
-                'period view',
-                'user topup view',
-                'saving account type view',
-                'saving account view',
-                'cashflow view',
-                'kop product type view',
-                'user saving view',
-                'kop product view',
-                'user saving transaction view',
-                'bank view',
-                'cashflow transaction view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Main Data',
-                    'icon' => '<i class="bi bi-collection-fill"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'deviden view',
-                        'period view',
-                        'kop product type view',
-                        'kop product view',
-                        'bank view'
-                    ],
-                    'submenus' => [
-                        [
-                            'title' => 'Prosentase SHU',
-                            'route' => '/devidens',
-                            'permission' => 'deviden view'
-                        ],
-                        [
-                            'title' => 'Periode',
-                            'route' => '/periods',
-                            'permission' => 'period view'
-                        ],
-                        [
-                            'title' => 'Tipe Produk Koperasi',
-                            'route' => '/kop-product-types',
-                            'permission' => 'kop product type view'
-                        ],
-                        [
-                            'title' => 'Produk Koperasi',
-                            'route' => '/kop-products',
-                            'permission' => 'kop product view'
-                        ],
-                        [
-                            'title' => 'Banks',
-                            'route' => '/banks',
-                            'permission' => 'bank view'
-                        ]
-                    ]
+    [
+        'header' => 'Main',
+        'permissions' => [
+            'deviden view',
+            'period view',
+            'user topup view',
+            'saving account type view',
+            'saving account view',
+            'cashflow view',
+            'kop product type view',
+            'user saving view',
+            'kop product view',
+            'user saving transaction view',
+            'bank view',
+            'cashflow transaction view',
+            'term view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Main Data',
+                'icon' => '<i class="bi bi-collection-fill"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'deviden view',
+                    'period view',
+                    'kop product type view',
+                    'kop product view',
+                    'bank view',
+                    'term view'
                 ],
-                [
-                    'title' => 'Topup JIMPay',
-                    'icon' => '<i class="bi bi-people"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'user topup view'
+                'submenus' => [
+                    [
+                        'title' => 'Prosentase SHU',
+                        'route' => '/devidens',
+                        'permission' => 'deviden view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Topup Anggota',
-                            'route' => '/user-topups',
-                            'permission' => 'user topup view'
-                        ]
-                    ]
-                ],
-                [
-                    'title' => 'Kas Koperasi',
-                    'icon' => '<i class="bi bi-people"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'saving account type view',
-                        'saving account view',
-                        'cashflow view',
-                        'cashflow transaction view'
+                    [
+                        'title' => 'Periode',
+                        'route' => '/periods',
+                        'permission' => 'period view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Tipe Akun',
-                            'route' => '/saving-account-types',
-                            'permission' => 'saving account type view'
-                        ],
-                        [
-                            'title' => 'Kode Akun',
-                            'route' => '/saving-accounts',
-                            'permission' => 'saving account view'
-                        ],
-                        [
-                            'title' => 'Transaksi Kas',
-                            'route' => '/cashflows',
-                            'permission' => 'cashflow view'
-                        ],
-                        [
-                            'title' => 'Cashflow Transactions',
-                            'route' => '/cashflow-transactions',
-                            'permission' => 'cashflow transaction view'
-                        ]
-                    ]
-                ],
-                [
-                    'title' => 'Simpanan Anggota',
-                    'icon' => '<i class="bi bi-people"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'user saving view',
-                        'user saving transaction view'
+                    [
+                        'title' => 'Tipe Produk Koperasi',
+                        'route' => '/kop-product-types',
+                        'permission' => 'kop product type view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Simpanan Anggota',
-                            'route' => '/user-savings',
-                            'permission' => 'user saving view'
-                        ],
-                        [
-                            'title' => 'Transaksi Simpanan',
-                            'route' => '/user-saving-transactions',
-                            'permission' => 'user saving transaction view'
-                        ]
+                    [
+                        'title' => 'Produk Koperasi',
+                        'route' => '/kop-products',
+                        'permission' => 'kop product view'
+                    ],
+                    [
+                        'title' => 'Banks',
+                        'route' => '/banks',
+                        'permission' => 'bank view'
+                    ],
+                    [
+                        'title' => 'Terms',
+                        'route' => '/terms',
+                        'permission' => 'term view'
                     ]
                 ]
-            ]
-        ],
-        [
-            'header' => 'Pembiayaan',
-            'permissions' => [
-                'paylater provider view',
-                'paylater view',
-                'paylater transaction view'
             ],
-            'menus' => [
-                [
-                    'title' => 'Paylater Providers',
-                    'icon' => '<i class="bi bi-people"></i>',
-                    'route' => '/paylater-providers',
-                    'permission' => 'paylater provider view',
-                    'permissions' => [],
-                    'submenus' => []
+            [
+                'title' => 'Topup JIMPay',
+                'icon' => '<i class="bi bi-people"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'user topup view'
                 ],
-                [
-                    'title' => 'Paylaters',
-                    'icon' => '<i class="bi bi-people"></i>',
-                    'route' => '/paylaters',
-                    'permission' => 'paylater view',
-                    'permissions' => [],
-                    'submenus' => []
-                ],
-            ]
-        ],
-        [
-            'header' => 'Users',
-            'permissions' => [
-                'user view',
-                'role & permission view'
+                'submenus' => [
+                    [
+                        'title' => 'Topup Anggota',
+                        'route' => '/user-topups',
+                        'permission' => 'user topup view'
+                    ]
+                ]
             ],
-            'menus' => [
-                [
-                    'title' => 'Users',
-                    'icon' => '<i class="bi bi-people-fill"></i>',
-                    'route' => '/users',
-                    'permission' => 'user view',
-                    'permissions' => [],
-                    'submenus' => []
+            [
+                'title' => 'Kas Koperasi',
+                'icon' => '<i class="bi bi-people"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'saving account type view',
+                    'saving account view',
+                    'cashflow view',
+                    'cashflow transaction view'
                 ],
-                [
-                    'title' => 'Permissions',
-                    'icon' => '<i class="bi bi-person-check-fill"></i>',
-                    'route' => '/permissions',
-                    'permission' => 'role & permission view',
-                    'permissions' => [],
-                    'submenus' => []
+                'submenus' => [
+                    [
+                        'title' => 'Tipe Akun',
+                        'route' => '/saving-account-types',
+                        'permission' => 'saving account type view'
+                    ],
+                    [
+                        'title' => 'Kode Akun',
+                        'route' => '/saving-accounts',
+                        'permission' => 'saving account view'
+                    ],
+                    [
+                        'title' => 'Transaksi Kas',
+                        'route' => '/cashflows',
+                        'permission' => 'cashflow view'
+                    ],
+                    [
+                        'title' => 'Cashflow Transactions',
+                        'route' => '/cashflow-transactions',
+                        'permission' => 'cashflow transaction view'
+                    ]
+                ]
+            ],
+            [
+                'title' => 'Simpanan Anggota',
+                'icon' => '<i class="bi bi-people"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'user saving view',
+                    'user saving transaction view'
                 ],
-                [
-                    'title' => 'Roles',
-                    'icon' => '<i class="bi bi-person-check-fill"></i>',
-                    'route' => '/roles',
-                    'permission' => 'role & permission view',
-                    'permissions' => [],
-                    'submenus' => []
+                'submenus' => [
+                    [
+                        'title' => 'Simpanan Anggota',
+                        'route' => '/user-savings',
+                        'permission' => 'user saving view'
+                    ],
+                    [
+                        'title' => 'Transaksi Simpanan',
+                        'route' => '/user-saving-transactions',
+                        'permission' => 'user saving transaction view'
+                    ]
                 ]
             ]
         ]
+    ],
+    [
+        'header' => 'Pembiayaan',
+        'permissions' => [
+            'paylater provider view',
+            'paylater view',
+            'paylater transaction view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Paylater Providers',
+                'icon' => '<i class="bi bi-people"></i>',
+                'route' => '/paylater-providers',
+                'permission' => 'paylater provider view',
+                'permissions' => [],
+                'submenus' => []
+            ],
+            [
+                'title' => 'Paylaters',
+                'icon' => '<i class="bi bi-people"></i>',
+                'route' => '/paylaters',
+                'permission' => 'paylater view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Users',
+        'permissions' => [
+            'user view',
+            'role & permission view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Users',
+                'icon' => '<i class="bi bi-people-fill"></i>',
+                'route' => '/users',
+                'permission' => 'user view',
+                'permissions' => [],
+                'submenus' => []
+            ],
+            [
+                'title' => 'Permissions',
+                'icon' => '<i class="bi bi-person-check-fill"></i>',
+                'route' => '/permissions',
+                'permission' => 'role & permission view',
+                'permissions' => [],
+                'submenus' => []
+            ],
+            [
+                'title' => 'Roles',
+                'icon' => '<i class="bi bi-person-check-fill"></i>',
+                'route' => '/roles',
+                'permission' => 'role & permission view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
     ]
+]
 ];

@@ -154,19 +154,30 @@
 <div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
-
+            @forelse ($terms as $term)
 
             <div class="modal-header">
-                <h4 class="modal-title">Modal Heading</h4>
+                <h4 class="modal-title">{{$term->title}}</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
 
             <div class="modal-body">
-                Modal body..
+                {!! $term->description !!}
+            </div>
+
+            @empty
+            <div class="modal-header">
+                <h4 class="modal-title">Paylater</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
 
+            <div class="modal-body">
+                Silahkan hubungi admin untuk info syarat dan ketentuan paylater
+            </div>
+
+            @endforelse
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>

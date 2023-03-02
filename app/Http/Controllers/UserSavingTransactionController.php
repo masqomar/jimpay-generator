@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserSavingTransaction;
 use App\Http\Requests\{StoreUserSavingTransactionRequest, UpdateUserSavingTransactionRequest};
+use App\Models\UserSaving;
 use Yajra\DataTables\Facades\DataTables;
 use Image;
 
@@ -63,6 +64,7 @@ class UserSavingTransactionController extends Controller
      */
     public function create()
     {
+
         return view('user-saving-transactions.create');
     }
 
@@ -122,8 +124,20 @@ class UserSavingTransactionController extends Controller
     public function edit(UserSavingTransaction $userSavingTransaction)
     {
         $userSavingTransaction->load('user:id,first_name', 'kop_product:id,name');
+        $totalSimpananSukarela = UserSaving::where('kop_product_id', 3)
+            ->where('user_id', $userSavingTransaction->user_id)->sum('amount');
+        $totalTransaksiTarik = UserSavingTransaction::where('user_id', $userSavingTransaction->user_id)
+            ->where('kop_product_id', 3)
+            ->where('description', 'Tarik Simpanan Sukarela')
+            ->where('status', 1)
+            ->sum('amount');
+        $totalTopUpSukarela = UserSavingTransaction::where('user_id', $userSavingTransaction->user_id)
+            ->where('description', 'Topup Saldo Jimpay')
+            ->where('status', 1)->sum('amount');
 
-        return view('user-saving-transactions.edit', compact('userSavingTransaction'));
+        $saldoSukarela = $totalSimpananSukarela - $totalTransaksiTarik - $totalTopUpSukarela;
+
+        return view('user-saving-transactions.edit', compact('userSavingTransaction', 'saldoSukarela'));
     }
 
     /**
@@ -135,35 +149,55 @@ class UserSavingTransactionController extends Controller
      */
     public function update(UpdateUserSavingTransactionRequest $request, UserSavingTransaction $userSavingTransaction)
     {
-        $attr = $request->validated();
+        $totalSimpananSukarela = UserSaving::where('kop_product_id', 3)
+            ->where('user_id', $userSavingTransaction->user_id)->sum('amount');
+        $totalTransaksiTarik = UserSavingTransaction::where('user_id', $userSavingTransaction->user_id)
+            ->where('kop_product_id', 3)
+            ->where('description', 'Tarik Simpanan Sukarela')
+            ->where('status', 1)
+            ->sum('amount');
+        $totalTopUpSukarela = UserSavingTransaction::where('user_id', $userSavingTransaction->user_id)
+            ->where('description', 'Topup Saldo Jimpay')
+            ->where('status', 1)->sum('amount');
 
-        if ($request->file('saving_transaction_image') && $request->file('saving_transaction_image')->isValid()) {
+        $saldoSukarela = $totalSimpananSukarela - $totalTransaksiTarik - $totalTopUpSukarela;
+        $nominalPengambilan = $request->amount;
 
-            $path = storage_path('app/public/uploads/saving_transaction_images/');
-            $filename = $request->file('saving_transaction_image')->hashName();
+        if ($saldoSukarela >= $nominalPengambilan) {
+            $attr = $request->validated();
 
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
+            if ($request->file('saving_transaction_image') && $request->file('saving_transaction_image')->isValid()) {
+
+                $path = storage_path('app/public/uploads/saving_transaction_images/');
+                $filename = $request->file('saving_transaction_image')->hashName();
+
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+
+                Image::make($request->file('saving_transaction_image')->getRealPath())->resize(500, 500, function ($constraint) {
+                    $constraint->upsize();
+                    $constraint->aspectRatio();
+                })->save($path . $filename);
+
+                // delete old saving_transaction_image from storage
+                if ($userSavingTransaction->saving_transaction_image != null && file_exists($path . $userSavingTransaction->saving_transaction_image)) {
+                    unlink($path . $userSavingTransaction->saving_transaction_image);
+                }
+
+                $attr['saving_transaction_image'] = $filename;
             }
 
-            Image::make($request->file('saving_transaction_image')->getRealPath())->resize(500, 500, function ($constraint) {
-                $constraint->upsize();
-                $constraint->aspectRatio();
-            })->save($path . $filename);
+            $userSavingTransaction->update($attr);
 
-            // delete old saving_transaction_image from storage
-            if ($userSavingTransaction->saving_transaction_image != null && file_exists($path . $userSavingTransaction->saving_transaction_image)) {
-                unlink($path . $userSavingTransaction->saving_transaction_image);
-            }
-
-            $attr['saving_transaction_image'] = $filename;
+            return redirect()
+                ->route('user-saving-transactions.index')
+                ->with('success', __('The userSavingTransaction was updated successfully.'));
         }
-
-        $userSavingTransaction->update($attr);
 
         return redirect()
             ->route('user-saving-transactions.index')
-            ->with('success', __('The userSavingTransaction was updated successfully.'));
+            ->with('error', __('Nominal pengambilan lebih besar dari saldo simpanan'));
     }
 
     /**

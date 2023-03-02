@@ -7,6 +7,7 @@ use App\Http\Requests\StorePembiayaanRequest;
 use App\Models\Bank;
 use App\Models\Paylater;
 use App\Models\PaylaterProvider;
+use App\Models\Term;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,8 +15,9 @@ class PembiayaanController extends Controller
 {
     public function index()
     {
+        $terms = Term::where('title', 'pembiayaan')->get();
 
-        return view('user.pembiayaan.index');
+        return view('user.pembiayaan.index', compact('terms'));
     }
 
     public function store(StorePembiayaanRequest $request)

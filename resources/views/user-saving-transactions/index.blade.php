@@ -39,6 +39,7 @@
                             <table class="table table-striped" id="data-table" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('Anggota') }}</th>
                                         <th>{{ __('Jenis Simpanan') }}</th>
                                         <th>{{ __('Nominal') }}</th>
@@ -72,6 +73,10 @@
         serverSide: true,
         ajax: "{{ route('user-saving-transactions.index') }}",
         columns: [{
+                data: 'id',
+                name: 'id'
+            },
+            {
                 data: 'user',
                 name: 'user.first_name'
             },

@@ -35,7 +35,7 @@
         <tbody>
             @foreach ($riwayatTransaksiAll as $riwayatTransaksi)
             <tr>
-                <td>{{ $riwayatTransaksi->created_at}}</td>
+                <td>{{ $riwayatTransaksi->created_at->format('d-m-Y')}}</td>
                 <td>@rupiah ($riwayatTransaksi->amount)</td>
                 <td>{{ $riwayatTransaksi->meta['description'] ?? 'Tidak Ada Keterangan' }}</td>
             </tr>
