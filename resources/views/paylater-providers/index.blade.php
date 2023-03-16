@@ -39,6 +39,7 @@
                             <table class="table table-striped" id="data-table" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('Name') }}</th>
                                         <th>{{ __('Kop Product') }}</th>
                                         <th>{{ __('Action') }}</th>
@@ -68,6 +69,10 @@
         serverSide: true,
         ajax: "{{ route('paylater-providers.index') }}",
         columns: [{
+                data: 'id',
+                name: 'id',
+            },
+            {
                 data: 'name',
                 name: 'name',
             },

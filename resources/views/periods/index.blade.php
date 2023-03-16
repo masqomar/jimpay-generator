@@ -39,6 +39,7 @@
                             <table class="table table-striped" id="data-table" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('Name') }}</th>
                                         <th>{{ __('Open Date') }}</th>
                                         <th>{{ __('Close Date') }}</th>
@@ -70,6 +71,10 @@
         serverSide: true,
         ajax: "{{ route('periods.index') }}",
         columns: [{
+                data: 'id',
+                name: 'id',
+            },
+            {
                 data: 'name',
                 name: 'name',
             },

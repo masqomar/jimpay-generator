@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\{StoreUserRequest, UpdateUserRequest};
+use App\Models\Paylater;
 use App\Models\User;
+use App\Models\UserSaving;
+use App\Models\UserSavingTransaction;
+use Bavix\Wallet\Models\Transaction;
 use Yajra\DataTables\Facades\DataTables;
 use Image;
 
@@ -32,7 +36,7 @@ class UserController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $users = User::with('roles:id,name');
+            $users = User::with('roles:id,name')->where('type', 'user');
 
             return Datatables::of($users)
                 ->addColumn('role', function ($row) {
@@ -114,8 +118,32 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user->load('roles:id,name');
+        $totalSimPokok = UserSaving::where('user_id', $user->id)->where('kop_product_id', 1)->sum('amount');
+        $totalSimWajib = UserSaving::where('user_id', $user->id)->where('kop_product_id', 2)->sum('amount');
 
-        return view('users.show', compact('user'));
+        $totalSimpananSukarela = UserSaving::where('user_id', $user->id)->where('kop_product_id', 3)->sum('amount');
+        $totalTransaksiTarik = UserSavingTransaction::where('user_id', $user->id)
+            ->where('kop_product_id', 3)
+            ->where('status', 1)
+            ->sum('amount');
+        $totalTopUpSukarela = UserSavingTransaction::where('user_id', $user->id)
+            ->where('description', 'Topup Saldo Jimpay')
+            ->where('status', 1)->sum('amount');
+        $saldoSukarela = $totalSimpananSukarela - $totalTransaksiTarik - $totalTopUpSukarela;
+
+        $totalSimpanan = $totalSimPokok + $totalSimWajib + $saldoSukarela;
+
+        $totalHistoryOut = Transaction::where('payable_id', $user->id)->where('type', 'withdraw')->sum('amount');
+        $totalAktifitas = abs($totalHistoryOut);
+
+        $pembiayaan = Paylater::join('users', 'users.id', '=', 'paylaters.user_id')
+            ->join('paylater_transactions', 'paylater_transactions.paylater_id', '=', 'paylaters.id')
+            ->where('paylaters.user_id', $user->id)
+            ->sum('paylater_transactions.amount');
+
+        $totalAktifitasAnggota = $totalAktifitas + $pembiayaan;
+
+        return view('users.show', compact('user', 'totalSimPokok', 'totalSimWajib', 'saldoSukarela', 'totalAktifitas', 'pembiayaan', 'totalSimpanan', 'totalAktifitasAnggota'));
     }
 
     /**

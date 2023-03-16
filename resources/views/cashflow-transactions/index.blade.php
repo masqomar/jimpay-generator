@@ -39,6 +39,7 @@
                             <table class="table table-striped" id="data-table" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('Cashflow') }}</th>
                                         <th>{{ __('Bank') }}</th>
                                         <th>{{ __('Description') }}</th>
@@ -70,6 +71,10 @@
         serverSide: true,
         ajax: "{{ route('cashflow-transactions.index') }}",
         columns: [{
+                data: 'id',
+                name: 'id',
+            },
+            {
                 data: 'cashflow',
                 name: 'cashflow.saving_account_id'
             },

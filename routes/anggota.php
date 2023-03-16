@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\PenarikanMitraController;
 use App\Http\Controllers\User\BayarController;
 use App\Http\Controllers\User\PaylaterController;
 use App\Http\Controllers\User\PembiayaanController;
@@ -70,4 +71,8 @@ Route::middleware(['auth', 'web'])->group(function () {
     Route::get('profil', [ProfilController::class, 'index'])->name('user.profil.index');
     Route::get('ganti-password', [ProfilController::class, 'changePassword'])->name('user.profil.password');
     Route::get('edit-profil', [ProfilController::class, 'editProfil'])->name('user.profil.detail');
+
+    // Mitra Tarik
+    Route::get('penarikan', [PenarikanMitraController::class, 'index'])->name('user.mitra.index');
+    Route::post('penarikan', [PenarikanMitraController::class, 'store'])->name('user.mitra.store');
 });

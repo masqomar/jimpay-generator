@@ -3,11 +3,7 @@
 @section('title', trans('Riwayat Transaksi'))
 
 @section('content')
-<!-- loader -->
-<div id="loader">
-    <div class="spinner-border text-primary" role="status"></div>
-</div>
-<!-- * loader -->
+
 
 <!-- App Header -->
 <div class="appHeader bg-primary text-light">

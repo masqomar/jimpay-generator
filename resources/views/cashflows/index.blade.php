@@ -23,6 +23,13 @@
         <x-alert></x-alert>
 
         @can('cashflow create')
+        <form action="{{ route('cashflows.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file" class="form-control">
+            <br>
+            <button class="btn btn-success">Import Arus Kas</button>
+        </form>
+
         <div class="d-flex justify-content-end">
             <a href="{{ route('cashflows.create') }}" class="btn btn-primary mb-3">
                 <i class="fas fa-plus"></i>
@@ -39,6 +46,7 @@
                             <table class="table table-striped" id="data-table" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('Saving Account') }}</th>
                                         <th>{{ __('Amount') }}</th>
                                         <th>{{ __('Type') }}</th>
@@ -72,6 +80,10 @@
         serverSide: true,
         ajax: "{{ route('cashflows.index') }}",
         columns: [{
+                data: 'id',
+                name: 'id',
+            },
+            {
                 data: 'saving_account',
                 name: 'saving_account.saving_account_type_id'
             },

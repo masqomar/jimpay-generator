@@ -39,6 +39,7 @@
                             <table class="table table-striped" id="data-table" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('User') }}</th>
                                         <th>{{ __('Kop Product') }}</th>
                                         <th>{{ __('Period') }}</th>
@@ -74,6 +75,10 @@
         serverSide: true,
         ajax: "{{ route('user-savings.index') }}",
         columns: [{
+                data: 'id',
+                name: 'id',
+            },
+            {
                 data: 'user',
                 name: 'user.first_name'
             },

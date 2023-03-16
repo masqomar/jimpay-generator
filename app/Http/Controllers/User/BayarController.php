@@ -42,7 +42,7 @@ class BayarController extends Controller
 
         $pengirim = User::where('id', Auth::user()->id)->first();
         $penerima = User::where('id', $request->anggota_id)->first();
-        $namaPenerima = User::where('id', 176)->get(['first_name'])->first()->first_name;
+        $namaPenerima = User::where('id', $request->anggota_id)->get(['first_name'])->first()->first_name;
 
         $saldoPengirim = $pengirim->balanceInt;
         $saldoPenerima = $penerima->balanceInt;

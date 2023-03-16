@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Cashflow;
 use App\Http\Requests\{StoreCashflowRequest, UpdateCashflowRequest};
+use App\Imports\ImportCashflow;
+use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Image;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CashflowController extends Controller
 {
@@ -183,5 +186,11 @@ class CashflowController extends Controller
                 ->route('cashflows.index')
                 ->with('error', __("The cashflow can't be deleted because it's related to another table."));
         }
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new ImportCashflow, $request->file('file')->store('files'));
+        return redirect()->back();
     }
 }

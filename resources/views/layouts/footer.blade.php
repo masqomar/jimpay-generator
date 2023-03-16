@@ -16,6 +16,7 @@
         </div>
 
         <script src="{{ asset('mazer') }}/js/app.js"></script>
+        @stack('js')
         @else
         <!-- Jquery -->
         <script src="{{ asset ('assets') }}/js/lib/jquery-3.4.1.min.js"></script>
@@ -31,7 +32,7 @@
         <!-- Base Js File -->
         <script src="{{ asset ('assets') }}/js/base.js"></script>
         @endif
-        @stack('js')
+
         </body>
 
         </html>

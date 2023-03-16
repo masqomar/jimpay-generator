@@ -22,15 +22,6 @@
     <section class="section">
         <x-alert></x-alert>
 
-        @can('deviden create')
-        <div class="d-flex justify-content-end">
-            <a href="{{ route('devidens.create') }}" class="btn btn-primary mb-3">
-                <i class="fas fa-plus"></i>
-                {{ __('Create a new deviden') }}
-            </a>
-        </div>
-        @endcan
-
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -39,6 +30,7 @@
                             <table class="table table-striped" id="data-table" width="100%">
                                 <thead>
                                     <tr>
+                                        <th>{{ __('Id') }}</th>
                                         <th>{{ __('Operational Reserve') }}</th>
                                         <th>{{ __('Capital') }}</th>
                                         <th>{{ __('User Capital') }}</th>
@@ -71,6 +63,10 @@
         serverSide: true,
         ajax: "{{ route('devidens.index') }}",
         columns: [{
+                data: 'id',
+                name: 'id',
+            },
+            {
                 data: 'operational_reserve',
                 name: 'operational_reserve',
             },

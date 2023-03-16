@@ -195,5 +195,5 @@ return [
         ['group' => 'paylater providers', 'access' => ['paylater provider view', 'paylater provider create', 'paylater provider edit', 'paylater provider delete']],
         ['group' => 'paylaters', 'access' => ['paylater view', 'paylater create', 'paylater edit', 'paylater delete']],
         ['group' => 'cashflow transactions', 'access' => ['cashflow transaction view', 'cashflow transaction create', 'cashflow transaction edit', 'cashflow transaction delete']],
-    ['group' => 'terms', 'access' => ['term view', 'term create', 'term edit', 'term delete']], 
+    ['group' => 'terms', 'access' => ['term view', 'term create', 'term edit', 'term delete']],['group' => 'withdraw requests', 'access' => ['withdraw request view', 'withdraw request create', 'withdraw request edit', 'withdraw request delete']],['group' => 'ppob accounts', 'access' => ['ppob account view', 'ppob account create', 'ppob account edit', 'ppob account delete']], 
 		],];

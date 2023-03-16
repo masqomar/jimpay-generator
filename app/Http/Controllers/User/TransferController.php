@@ -24,6 +24,8 @@ class TransferController extends Controller
     function fetch(Request $request)
     {
         $data = User::select("first_name as value", "id", "member_id")
+            ->where('type', 'user')
+            ->where('status', 1)
             ->where('first_name', 'LIKE', '%' . $request->get('search') . '%')
             ->get();
 
@@ -61,6 +63,8 @@ class TransferController extends Controller
 
             $pengirim->balanceInt;
             $penerima->balanceInt;
+
+            activity()->log('Look mum, I logged something');
 
             return redirect()->route('user.transfer.index')->with(['success' => 'Transfer berhasil']);
         }

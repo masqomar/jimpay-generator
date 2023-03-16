@@ -60,11 +60,12 @@ class UserTopupController extends Controller
      */
     public function store(StoreUserTopupRequest $request)
     {
-        // dd($request->all());
         UserTopup::create($request->validated() + ['date' => now(), 'status' => 'Sukses']);
 
         $user = User::where('id', $request->user_id)->first();
         $pengguna = $user->deposit($request->amount, ['description' => $request->note]);
+
+        // activity()->log('Topup saldo jimpay ' . $request->note . ' ke ' . $user->member_id . ' ' . $user->first_name);
 
         return redirect()
             ->route('user-topups.index')

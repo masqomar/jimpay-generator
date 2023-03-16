@@ -29,7 +29,7 @@
 
     <section class="section">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -46,15 +46,15 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">{{ __('Name') }}</td>
+                                    <td class="fw-bold">{{ __('First Name') }}</td>
                                     <td>{{ $user->first_name }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">{{ __('Name') }}</td>
+                                    <td class="fw-bold">{{ __('Last Name') }}</td>
                                     <td>{{ $user->last_name }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">{{ __('Name') }}</td>
+                                    <td class="fw-bold">{{ __('Member Id') }}</td>
                                     <td>{{ $user->member_id }}</td>
                                 </tr>
                                 <tr>
@@ -69,15 +69,57 @@
                                     <td class="fw-bold">{{ __('Role') }}</td>
                                     <td>{{ $user->getRoleNames()->toArray() !== [] ? $user->getRoleNames()[0] : '-' }}</td>
                                 </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="text-center fw-bold">Total Simpanan @rupiah($totalSimpanan)</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
                                 <tr>
-                                    <td class="fw-bold">{{ __('Email verified at') }}</td>
-                                    <td>{{ $user->email_verified_at ? $user->email_verified_at->format('d/m/Y H:i') : '-' }}
-                                    </td>
+                                    <td class="fw-bold">{{ __('Simpanan Pokok') }}</td>
+                                    <td>@rupiah ($totalSimPokok)</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">{{ __('Simpanan Wajib') }}</td>
+                                    <td>@rupiah ($totalSimWajib)</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">{{ __('Simpanan Sukarela') }}</td>
+                                    <td>@rupiah ($saldoSukarela)</td>
                                 </tr>
                             </table>
                         </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="text-center fw-bold">Total Aktifitas @rupiah($totalAktifitasAnggota)</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <tr>
+                                    <td class="fw-bold">{{ __('Aktifitas Anggota') }}</td>
+                                    <td>@rupiah ($totalAktifitas)</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">{{ __('Pembiayan') }}</td>
+                                    <td>@rupiah ($pembiayaan)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="text-center fw-bold">SHU DITERIMAKAN</h4>
 
-                        <a href="{{ url()->previous() }}" class="btn btn-secondary">{{ __('Back') }}</a>
+                        <h1 class="text-center fw-bold text-primary">1999999</h1>
                     </div>
                 </div>
             </div>

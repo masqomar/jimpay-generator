@@ -9,12 +9,17 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "alexusmai/laravel-file-manager": "^3.0",
+        "arcanedev/log-viewer": "~9.0",
         "bavix/laravel-wallet": "^9.6",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "^3.1",
+        "psr/simple-cache": "2.0",
+        "spatie/laravel-activitylog": "^4.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

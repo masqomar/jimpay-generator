@@ -3,11 +3,7 @@
 @section('title', trans('Simpanan Sukarela'))
 
 @section('content')
-<!-- loader -->
-<div id="loader">
-    <div class="spinner-border text-primary" role="status"></div>
-</div>
-<!-- * loader -->
+
 
 <!-- App Header -->
 <div class="appHeader bg-primary text-light">
@@ -30,39 +26,45 @@
 </div>
 @endif
 
-<table class="table mb-0">
-    <tbody>
-        @if($anggotaID == Auth::user()->id)
-        <tr>
-            <th scope="col">Total Simpanan Sukarela</th>
-            <td>
-                <h4 class="text-warning"> @rupiah($totalSimpananSukarela)</h4>
-            </td>
-        </tr>
-        <tr>
-            <th scope="col">Total TopUp JIMPay</th>
-            <td>
-                <h4 class="text-danger">- @rupiah($totalTopUpSukarela)</h4>
-            </td>
-        </tr>
-        <tr>
-            <th scope="col">Total Penarikan Simpanan</th>
-            <td>
-                <h4 class="text-danger">- @rupiah($totalTarikSimpSukarela)</h4>
-                <a href="{{ route('user.sim-sukarela.detailPenarikan', $anggotaID) }}" class="btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center">Detail</a>
-            </td>
-        </tr>
-        <tr>
-            <th scope="col">Saldo Simpanan Sukarela</th>
-            <td>
-                <h4 class="text-primary"> @rupiah($saldoSukarela)</h4>
-            </td>
-        </tr>
-        @endif
-    </tbody>
-</table>
-<div class="text-center">
-    <a class="btn btn-info" href="{{ route('user.sim-sukarela.show', $anggotaID) }}" role="button">Detail</a>
-    <a class="btn btn-warning" href="{{ route('user.sim-sukarela.tarik') }}" role="button">Cairkan</a>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <table class="table mb-0">
+                <tbody>
+                    @if($anggotaID == Auth::user()->id)
+                    <tr>
+                        <th scope="col">Total Simpanan Sukarela</th>
+                        <td>
+                            <h4 class="text-warning"> @rupiah($totalSimpananSukarela)</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Total TopUp JIMPay</th>
+                        <td>
+                            <h4 class="text-danger">- @rupiah($totalTopUpSukarela)</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Total Penarikan Simpanan</th>
+                        <td>
+                            <h4 class="text-danger">- @rupiah($totalTarikSimpSukarela)</h4>
+                            <a href="{{ route('user.sim-sukarela.detailPenarikan', $anggotaID) }}" class="btn btn-sm btn-primary w-100 d-flex align-items-center justify-content-center">Detail</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Saldo Simpanan Sukarela</th>
+                        <td>
+                            <h4 class="text-primary"> @rupiah($saldoSukarela)</h4>
+                        </td>
+                    </tr>
+                    @endif
+                </tbody>
+            </table>
+            <div class="text-center">
+                <a class="btn btn-info" href="{{ route('user.sim-sukarela.show', $anggotaID) }}" role="button">Detail</a>
+                <a class="btn btn-warning" href="{{ route('user.sim-sukarela.tarik') }}" role="button">Cairkan</a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

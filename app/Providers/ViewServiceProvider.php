@@ -36,7 +36,9 @@ class ViewServiceProvider extends ServiceProvider
         View::composer(['user-topups.create', 'user-topups.edit'], function ($view) {
             return $view->with(
                 'users',
-                \App\Models\User::select('id', 'first_name')->get()
+                \App\Models\User::select('id', 'first_name', 'member_id')
+                    ->where('type', 'user')
+                    ->where('status', 1)->get()
             );
         });
 
@@ -136,6 +138,21 @@ class ViewServiceProvider extends ServiceProvider
             return $view->with(
                 'banks',
                 \App\Models\Bank::select('id', 'code')->get()
+            );
+        });
+
+
+        View::composer(['withdraw-requests.create', 'withdraw-requests.edit'], function ($view) {
+            return $view->with(
+                'users',
+                \App\Models\User::select('id', 'first_name')->where('type', 'store')->get()
+            );
+        });
+
+        View::composer(['withdraw-requests.create', 'withdraw-requests.edit'], function ($view) {
+            return $view->with(
+                'banks',
+                \App\Models\Bank::select('id', 'name')->get()
             );
         });
     }

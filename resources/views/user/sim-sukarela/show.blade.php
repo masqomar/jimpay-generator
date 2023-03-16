@@ -3,11 +3,7 @@
 @section('title', trans('Detail Simpanan Sukarela'))
 
 @section('content')
-<!-- loader -->
-<div id="loader">
-    <div class="spinner-border text-primary" role="status"></div>
-</div>
-<!-- * loader -->
+
 
 <!-- App Header -->
 <div class="appHeader bg-primary text-light">
@@ -24,37 +20,43 @@
 <br>
 <br>
 <br>
-<div style="overflow-x:auto;">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="text-center">Tanggal Setor</th>
-                <th class="text-center">Periode</th>
-                <th class="text-center">Nominal</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($simpananSukarela as $sukarela)
-            @if($anggotaID == Auth::user()->id)
-            <tr>
-                <td class="text-center">{{ $sukarela->deposit_date->format('Y-m-d')}}</td>
-                <td class="text-center">{{ $sukarela->month}} {{ $sukarela->year}}</td>
-                <td class="text-center">@rupiah ($sukarela->amount)</td>
-            </tr>
-            @endif
-            @endforeach
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <div style="overflow-x:auto;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Tanggal Setor</th>
+                            <th class="text-center">Periode</th>
+                            <th class="text-center">Nominal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($simpananSukarela as $sukarela)
+                        @if($anggotaID == Auth::user()->id)
+                        <tr>
+                            <td class="text-center">{{ $sukarela->deposit_date->format('Y-m-d')}}</td>
+                            <td class="text-center">{{ $sukarela->month}} {{ $sukarela->year}}</td>
+                            <td class="text-center">@rupiah ($sukarela->amount)</td>
+                        </tr>
+                        @endif
+                        @endforeach
 
 
-        </tbody>
-    </table>
+                    </tbody>
+                </table>
 
-    <br>
-    Saldo Simpanan Sukarela : {{ $saldoSukarela }} <br /><br />
-    Halaman : {{ $simpananSukarela->currentPage() }} <br />
-    Jumlah Data : {{ $simpananSukarela->total() }} <br />
-    Data Per Halaman : {{ $simpananSukarela->perPage() }} <br />
+                <br>
+                Saldo Simpanan Sukarela : {{ $saldoSukarela }} <br /><br />
+                Halaman : {{ $simpananSukarela->currentPage() }} <br />
+                Jumlah Data : {{ $simpananSukarela->total() }} <br />
+                Data Per Halaman : {{ $simpananSukarela->perPage() }} <br />
 
 
-    {{ $simpananSukarela->links() }}
+                {{ $simpananSukarela->links() }}
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
