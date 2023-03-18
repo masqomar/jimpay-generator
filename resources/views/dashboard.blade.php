@@ -276,11 +276,36 @@
                 <div class="tab-pane fade" id="shu" role="tabpanel">
                     <ul class="listview image-listview">
                         <li>
-                            <div class="item">
-                                <img src="{{ asset ('assets') }}//img/sample/avatar/avatar1.jpg" alt="image" class="image">
-                                <div class="in">
-                                    <div>Sabar Yes!</div>
-                                    <span class="text-muted">Masih Dihitung</span>
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h4 class="text-center">Total SHU @rupiah($totalShu)</h4>
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th scope="col">Total Modal <sup><a href="#" data-toggle="tooltip" title="SHU PERMODALAN ANGGOTA Merupakan SHU yang diterima oleh anggota atas laba sebesar {{$userCapitalDeviden}} % yang di hasilkan dari aktivitas usaha dari koperasi JIM">?</a></sup> </th>
+                                            <td>
+                                                <h4 class="text-warning" style="text-align: right;"> @rupiah ($shuUserCapitalDiterima)</h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Total Aktifitas <sup><a href="#" data-toggle="tooltip" title="SHU AKTIFITAS ANGGOTA Merupakan SHU yang diterima dari laba sebesar {{$userActivityDeviden}} % atas aktifitas transaksi yang dilakukan oleh anggota untuk mendukung usaha dari koperasi JIM">?</a></sup></th>
+                                            <td>
+                                                <h4 class="text-warning" style="text-align: right;"> @rupiah ($shuUserActivityDiterima)</h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">SHU Diterima <sup><a href="#" data-toggle="tooltip" title="Ini adalah total SHU yang diterimakan">?</a></sup></th>
+                                            <td>
+                                                <h4 class="text-warning" style="text-align: right;"><a href="#">Cairkan</a> dssd </h4>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">SHU Berjalan <sup><a href="#" data-toggle="tooltip" title="Ini adalah perkiraan total SHU yang akan diterimakan">?</a></sup></th>
+                                            <td>
+                                                <h4 class="text-warning" style="text-align: right;"> dssd</h4>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </li>
