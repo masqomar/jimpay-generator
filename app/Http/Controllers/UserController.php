@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserSaving;
 use App\Models\UserSavingTransaction;
 use Bavix\Wallet\Models\Transaction;
+use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Image;
 
@@ -168,7 +169,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $attr = $request->validated();
+        $attr = $request->validated() + (['status' => $request->status]);
 
         if ($request->file('avatar') && $request->file('avatar')->isValid()) {
 

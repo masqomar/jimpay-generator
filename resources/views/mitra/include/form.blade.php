@@ -83,22 +83,6 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="status">{{ __('Status') }}</label>
-            <select class="form-select @error('status') is-invalid @enderror" name="status" id="status" class="form-control" required>
-                <option value="" selected disabled>-- {{ __('Select Status') }} --</option>
-                <option value="0" {{ isset($user) && $user->status == '0' ? 'selected' : (old('status') == '0' ? 'selected' : '') }}>{{ __('Tidak Aktif') }}</option>
-                <option value="1" {{ isset($user) && $user->status == '1' ? 'selected' : (old('status') == '1' ? 'selected' : '') }}>{{ __('Aktif') }}</option>
-            </select>
-            @error('status')
-            <span class="text-danger">
-                {{ $message }}
-            </span>
-            @enderror
-        </div>
-    </div>
-
 
 
     @empty($user)

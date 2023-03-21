@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     CashflowController,
     DashboardController,
+    MitraController,
     UserController,
     ProfileController,
     RoleAndPermissionController,
@@ -47,6 +48,11 @@ Route::resource('terms', App\Http\Controllers\TermController::class)->middleware
 Route::resource('ppob-accounts', App\Http\Controllers\PpobAccountController::class)->middleware('auth');
 
 Route::post('/import', [CashflowController::class, 'import'])->name('cashflows.import');
+Route::get('/export', [MitraController::class, 'export'])->name('mitra.export');
+
+Route::get('mitra', [App\Http\Controllers\MitraController::class, 'index'])->name('mitra.index')->middleware('auth');
+Route::get('mitra/{id}', [App\Http\Controllers\MitraController::class, 'show'])->name('mitra.show')->middleware('auth');
+
 // PPOB
 Route::get('pulsa/akun', [App\Http\Controllers\AkunPulsaController::class, 'akun'])->name('pulsa.akun')->middleware('auth');
 Route::get('pulsa/kategori', [App\Http\Controllers\PrabayarCategoryController::class, 'index'])->name('pulsa.kategori')->middleware('auth');

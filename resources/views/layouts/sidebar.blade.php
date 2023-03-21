@@ -99,6 +99,15 @@
                     </a>
                 </li>
                 @endif
+                <li class="sidebar-title">Mitra</li>
+
+                <li class="sidebar-item{{ request()->is('mitra.index') ? ' active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('mitra.index') }}">
+                        <i class="bi bi-person-badge-fill"></i>
+                        <span> {{ __('Data Mitra') }}</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-title">Neraca</li>
 
                 <li class="sidebar-item{{ request()->is('neraca.index') ? ' active' : '' }}">

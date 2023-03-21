@@ -32,7 +32,6 @@ class ViewServiceProvider extends ServiceProvider
             );
         });
 
-
         View::composer(['user-topups.create', 'user-topups.edit'], function ($view) {
             return $view->with(
                 'users',
