@@ -60,7 +60,7 @@
 
             <div class="form-links mt-2">
                 <div>
-                    <input type="checkbox" id="checkbox"> Keep me logged in
+                    <input type="checkbox" id="checkbox" name="remember"> Keep me logged in
                 </div>
                 <div><input type="checkbox" id="checkboxPassword"> Show Password</div>
             </div>
