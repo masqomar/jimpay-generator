@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserSaving;
+use App\Models\Simpanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,13 +12,13 @@ class SimWajibController extends Controller
     public function index()
     {
         $anggotaID = Auth::user()->id;
-        $simpananWajib = UserSaving::where('kop_product_id', 2)
-            ->where('user_id', $anggotaID)
+        $simpananWajib = Simpanan::where('jenis_id', 41)
+            ->where('anggota_id', $anggotaID)
             ->paginate(6);
 
-        $totalSimpananWajib = UserSaving::where('kop_product_id', 2)
-            ->where('user_id', $anggotaID)
-            ->sum('amount');
+        $totalSimpananWajib = Simpanan::where('jenis_id', 41)
+            ->where('anggota_id', $anggotaID)
+            ->sum('jumlah');
 
         return view('user.sim-wajib.index', compact('simpananWajib', 'anggotaID', 'totalSimpananWajib'));
     }

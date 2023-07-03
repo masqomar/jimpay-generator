@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', trans('Pengajuan Pembiayaan'))
+@section('title', trans('Pembiayaan'))
 
 @section('content')
 
@@ -12,125 +12,76 @@
             <ion-icon name="chevron-back-outline"></ion-icon>
         </a>
     </div>
-    <div class="pageTitle">Pengajuan Pembiayaan</div>
+    <div class="pageTitle">Pembiayaan</div>
     <div class="right"></div>
 </div>
 <!-- * App Header -->
+
 <br>
 <br>
 <br>
-
-<div class="section mt-1 mb-5">
-
-    <form action="{{ route('user.pembiayaan.store') }}" method="POST">
-        @csrf
-
-        <div class="form-group boxed">
-            <div class="input-wrapper">
-                <input type="text" class="form-control" name="product" placeholder="Tuliskan nama barang" required>
-                <i class="clear-input">
-                    <ion-icon name="close-circle"></ion-icon>
-                </i>
-            </div>
-            @if($errors->has('product'))
-            <span class="error">{{ $errors->first('product') }}</span>
-            @endif
+<div class="card-body">
+<div class="col-md-12">
+        <!-- <a class="btn btn-sm btn-primary" href="{{route('user.paylater.create')}}" role="button">Pengajuan Baru</a> -->
+        <br>
+        <br>
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
         </div>
-
-        <div class="form-group boxed">
-            <div class="input-wrapper">
-                <textarea rows="3" class="form-control" name="product_specification" placeholder="Tuliskan spesifikasi barang yang kamu mau"></textarea>
-                <i class="clear-input">
-                    <ion-icon name="close-circle"></ion-icon>
-                </i>
-            </div>
-            @if($errors->has('product_specification'))
-            <span class="error">{{ $errors->first('product_specification') }}</span>
-            @endif
-        </div>
-
-        <div class="form-group boxed">
-            <div class="input-wrapper">
-                <input type="number" class="form-control" name="amount" placeholder="Tuliskan kisaran harga " required>
-                <i class="clear-input">
-                    <ion-icon name="close-circle"></ion-icon>
-                </i>
-            </div>
-            @if($errors->has('amount'))
-            <span class="error">{{ $errors->first('amount') }}</span>
-            @endif
-        </div>
-
-        <div class="form-group boxed">
-            <div class="input-wrapper">
-                <input type="number" class="form-control" name="duration" placeholder="Tuliskan jangka waktu angsuran MAX=>6" required>
-                <i class="clear-input">
-                    <ion-icon name="close-circle"></ion-icon>
-                </i>
-            </div>
-            @if($errors->has('duration'))
-            <span class="error">{{ $errors->first('duration') }}</span>
-            @endif
-        </div>
-
-        <div class="form-group boxed">
-            <div class="input-wrapper">
-                <textarea rows="3" class="form-control" name="note" placeholder="Tuliskan catatan sesuai kebutuhan kamu" required></textarea>
-                <i class="clear-input">
-                    <ion-icon name="close-circle"></ion-icon>
-                </i>
-            </div>
-            @if($errors->has('note'))
-            <span class="error">{{ $errors->first('note') }}</span>
-            @endif
-        </div>
-
-        <div class="form-links mt-2">
-            <div>
-                <input type="checkbox" name="extra_field"> I agree to the <a data-toggle="modal" data-target="#myModal" href="#exampleModal">terms of service</a>
-            </div>
-        </div>
-</div>
-<div class="text-center">
-    <button class="btn btn-sm btn-primary" type="submit">Ajukan Sekarang!
-    </button>
-    <a class="btn btn-sm btn-warning" href="{{url('/')}}" role="button">Batal</a>
-</div>
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            @forelse ($terms as $term)
-
-            <div class="modal-header">
-                <h4 class="modal-title">{{$term->title}}</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-
-            <div class="modal-body">
-                {!! $term->description !!}
-            </div>
-
-            @empty
-            <div class="modal-header">
-                <h4 class="modal-title">Pembiayaan</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-
-            <div class="modal-body">
-                Silahkan hubungi admin untuk info syarat dan ketentuan pembiayaan
-            </div>
-
-            @endforelse
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-
-        </div>
+        @endif
+        <h4 class="text-center">Data Pembiayaan</h4>
+    <div class="card">
+        <div class="card-body">
+          
+            <div style="overflow-x:auto;">
+                @forelse ($pembiayaanAll as $paylater)
+                @if($anggotaID == Auth::user()->id)
+                <table class="table table-striped">
+                <tr>
+                    <th class="text-left">Tanggal Pembiayaan</th>
+                    <td class="text-right">{{ $paylater->tgl_pinjam->format('d-m-Y')}}</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Tenor</th>
+                    <td class="text-right">{{ $paylater->lama_angsuran}}</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Jumlah</th>
+                    @php
+                    $angsuran = $paylater->jumlah / 6;
+                    $keuntungan = $paylater->biaya_adm;
+                    $total_angsuran = $angsuran + $keuntungan;
+                    $total_tagihan = $total_angsuran * 6;
+                    @endphp
+                    <td class="text-right">@rupiah (ceil($total_tagihan))</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Angsuran /bln</th>
+                    <td class="text-right">@rupiah (ceil($total_angsuran))</td>
+                </tr>
+                <tr>
+                    <th class="text-left">Lunas</th>
+                    @if ($paylater->lunas == 'Lunas')
+                    <td class="text-center" style="background-color: aqua;">Lunas</td>
+                    @else
+                    <td class="text-center" style="background-color: red;">Belum Lunas</td>
+                    @endif
+                </tr>
+                <tr>
+                    <th class="text-left">Keterangan</th>
+                    <td class="text-right">{{ $paylater->keterangan}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">
+                        <a class="btn btn-sm btn-info" href="{{route('user.pembiayaan.show', $paylater->id)}}" role="button">Detail</a>
+                    </td>
+                </tr>
+                <hr>
+                @endif
+                @empty
+                <tr><th><td colspan="2" class="text-center">Belum ada data pembiayaan</td></th></tr>                
+                @endforelse
+        </table>
     </div>
-</div>
-<br />
-<br />
-<br />
-@endsection
+    @endsection

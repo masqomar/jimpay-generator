@@ -40,9 +40,9 @@
                         @foreach ($simpananWajib as $wajib)
                         @if($anggotaID == Auth::user()->id)
                         <tr>
-                            <td>{{ $wajib->deposit_date}}</td>
-                            <td>{{ $wajib->month}} {{ $wajib->year}}</td>
-                            <td>@rupiah ($wajib->amount)</td>
+                            <td class="text-center">{{ $wajib->tgl_transaksi->format('d-m-Y')}}</td>
+                            <td class="text-center">{{ $wajib->tgl_transaksi->format('m-Y')}}</td>
+                            <td class="text-center">@rupiah ($wajib->jumlah)</td>
                         </tr>
                         @endif
                         @endforeach
